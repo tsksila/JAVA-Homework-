@@ -3,36 +3,17 @@ package homework1;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * CaesarCipherEncoder
- */
-public class CaesarEncoder {
+public class CaesarDecoder {
 
     public static void main(String[] args) {
+
         Scanner input = new Scanner(System.in);
 
         String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
                 "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
-        System.out.print("Input the plaintext message : ");
-        String plaintext = input.nextLine();
-
         System.out.print("Input number for shift : ");
         int shift = input.nextInt();
-
-        char[] plaintext_array = plaintext.toUpperCase().toCharArray();
-        ArrayList<String> plaintext_array_index = new ArrayList<String>();
-
-        /* find and store index of plaintext */
-
-        for (int i = 0; i < plaintext_array.length; i++) {
-            for (int j = 0; j < alphabet.length; j++) {
-                if (String.valueOf(plaintext_array[i]).equals(alphabet[j])) {
-                    plaintext_array_index.add(Integer.toString(j));
-                    break;
-                }
-            }
-        }
 
         /* shift table */
 
@@ -43,9 +24,10 @@ public class CaesarEncoder {
                 alphabet[j] = alphabet[j + 1];
             }
             alphabet[alphabet.length - 1] = temp;
+
         }
 
-        /* show table  */
+        /* Show table */
 
         System.out.print("Show table after shift : ");
         for (String c : alphabet) {
@@ -53,9 +35,39 @@ public class CaesarEncoder {
         }
         System.out.println();
 
-        /* show output encoding */
+        /* Input encoding message */
 
-        System.out.print("Output text encoding : ");
+        System.out.print("Input the Encoding message : ");
+        String plaintext = input.next();
+
+        char[] plaintext_array = plaintext.toUpperCase().toCharArray();
+        ArrayList<String> plaintext_array_index = new ArrayList<String>();
+
+        /* Find and store index of plaintext */
+
+        for (int i = 0; i < plaintext_array.length; i++) {
+            for (int j = 0; j < alphabet.length; j++) {
+                if (String.valueOf(plaintext_array[i]).equals(alphabet[j])) {
+                    plaintext_array_index.add(Integer.toString(j));
+                    break;
+                }
+            }
+        }
+
+        /* reverse table */
+
+        for (int i = 0; i < shift; i++) {
+            String temp = alphabet[alphabet.length - 1];
+
+            for (int j = alphabet.length - 1; j > 0; j--) {
+                alphabet[j] = alphabet[j - 1];
+            }
+            alphabet[0] = temp;
+        }
+
+        /* show output decoding */
+
+        System.out.print("Output text Decoding : ");
         for (String index : plaintext_array_index) {
             System.out.print(alphabet[Integer.parseInt(index)]);
         }
