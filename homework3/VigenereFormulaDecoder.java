@@ -1,43 +1,18 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class VigenereEncoder {
+public class VigenereFormulaDecoder {
 
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
 
         String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
-                "S", "T", "U", "V", "W", "X", "Y", "Z" };
+                "S", "T", "U", "V", "W", "X", "Y", "Z"  };
 
-        System.out.println("Vigenere Table Encoder ");
+        System.out.println("Vigenere Encoder by Formula ");
 
-        /* Create Table Vigenere */
-
-        ArrayList<ArrayList<String>> table = new ArrayList<>();
-
-        for (int i = 0; i <= alphabet.length; i++) {
-            ArrayList<String> list = new ArrayList<>();
-
-            for (int j = 0; j < alphabet.length; j++) {
-
-                list.add(alphabet[Math.abs(i + j) % alphabet.length]);
-            }
-
-            table.add(list);
-
-        }
-
-        /* Show Table Vigenere */
-        for (int i = 0; i < table.size() - 1; i++) {
-            System.out.println(table.get(i));
-        }
-
-        System.out.println("Vigenere  Encoder");
-
-        /* Input value */
-
-        System.out.print("Input the plaintext message : ");
+        System.out.print("Input the Encode message : ");
         String plaintext = input.nextLine();
         ArrayList<String> plaintext_array = new ArrayList<String>();
 
@@ -62,8 +37,9 @@ public class VigenereEncoder {
             }
         }
 
-        /* vegenere encoding process */
+        /* vegenere encoding by formula process */
 
+        /* match index plaintext and value form alphabet */
         ArrayList<ArrayList<Integer>> matchIndex = new ArrayList<>();
 
         for (int i = 0; i < plaintext_array.size(); i++) {
@@ -74,24 +50,29 @@ public class VigenereEncoder {
 
                 if (plaintext_array.get(i).equals(alphabet[j])) {
                     list.add(j);
-                }
-
-                if (key_array.get(i).equals(alphabet[j])) {
-                    list.add(j);
+                }   
+            }
+            for (int k = 0; k < alphabet.length; k++) {
+                if (key_array.get(i).equals(alphabet[k])) {
+                    list.add(k);
                 }
             }
+            
             matchIndex.add(list);
         }
 
-        /* show value encoding */
-        System.out.print("Show encoding value : ");
-        for (int i = 0; i < plaintext_array.size(); i++) {
-                System.out.print(table.get(matchIndex.get(i).get(0)).get(matchIndex.get(i).get(1)));
+
+        /* Vigenere Formula  */ 
+
+        System.out.print("Output Decoding Text : ");
+
+        for (int i = 0; i < matchIndex.size(); i++) {
+            
+
+            System.out.print(alphabet[Math.abs(matchIndex.get(i).get(0) - matchIndex.get(i).get(1) + alphabet.length) % alphabet.length ]);
+
+                    //System.out.print(((matchIndex.get(i).get(0) - matchIndex.get(i).get(1)) % alphabet.length )+ " ") ;
         }
-
-
-
-       
 
     }
 

@@ -10,7 +10,7 @@ public class VigenereDecoder {
         String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
                 "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
-        System.out.println("Vigenere  Decoder");
+        System.out.println("Vigenere  Encoder");
 
         /* Create Table Vigenere for decode */
 
@@ -89,7 +89,6 @@ public class VigenereDecoder {
                             
                             if (plaintext_array.get(i).equals(table.get(j).get(j2))) {
                                 
-
                                 System.out.print(table.get(0).get(j2));
                             }
 
