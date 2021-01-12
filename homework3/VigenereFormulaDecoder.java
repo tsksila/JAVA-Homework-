@@ -8,9 +8,9 @@ public class VigenereFormulaDecoder {
     public static void main(String[] args) {
 
         String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
-                "S", "T", "U", "V", "W", "X", "Y", "Z"  };
+                "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
-        System.out.println("Vigenere Encoder by Formula ");
+        System.out.println("Vigenere Decoder by Formula ");
 
         System.out.print("Input the Encode message : ");
         String plaintext = input.nextLine();
@@ -50,28 +50,26 @@ public class VigenereFormulaDecoder {
 
                 if (plaintext_array.get(i).equals(alphabet[j])) {
                     list.add(j);
-                }   
+                }
             }
             for (int k = 0; k < alphabet.length; k++) {
                 if (key_array.get(i).equals(alphabet[k])) {
                     list.add(k);
                 }
             }
-            
+
             matchIndex.add(list);
         }
 
-
-        /* Vigenere Formula  */ 
+        /* Vigenere Formula */
 
         System.out.print("Output Decoding Text : ");
 
         for (int i = 0; i < matchIndex.size(); i++) {
-            
 
-            System.out.print(alphabet[Math.abs(matchIndex.get(i).get(0) - matchIndex.get(i).get(1) + alphabet.length) % alphabet.length ]);
+            System.out.print(alphabet[Math.abs(matchIndex.get(i).get(0) - matchIndex.get(i).get(1) + alphabet.length)
+                    % alphabet.length]);
 
-                    //System.out.print(((matchIndex.get(i).get(0) - matchIndex.get(i).get(1)) % alphabet.length )+ " ") ;
         }
 
     }
