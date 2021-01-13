@@ -4,48 +4,38 @@ import java.util.Scanner;
 public class VigenereDecoder {
 
     private static Scanner input = new Scanner(System.in);
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
 
         String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
                 "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
-        System.out.println("Vigenere  Encoder");
+        System.out.println("Vigenere  Decoder");
 
         /* Create Table Vigenere for decode */
 
         ArrayList<ArrayList<String>> table = new ArrayList<>();
 
-        for (int i = 0; i <= alphabet.length; i++) {
+        for (int i = alphabet.length; i >= 0; i--) {
             ArrayList<String> list = new ArrayList<>();
 
-            for (int j = 0; j < alphabet.length; j++) {
+            for (int j = alphabet.length; j > 0; j--) {
 
-                list.add(alphabet[Math.abs(i + j) % alphabet.length]);
+                if (i - j < 0) {
+                    list.add(alphabet[alphabet.length - Math.abs(i - j)]);
+                } else {
+                    list.add(alphabet[Math.abs(i - j) % alphabet.length]);
+                }
+
             }
 
             table.add(list);
 
         }
-
-        /*
-         * for (int i = alphabet.length ; i >= 0 ;i--) { ArrayList<String> list = new
-         * ArrayList<>();
-         * 
-         * for (int j = alphabet.length; j > 0; j--) {
-         * 
-         * if (i-j < 0) { list.add(alphabet[alphabet.length - Math.abs(i-j)]) ; }else {
-         * list.add( alphabet[Math.abs(i - j)%alphabet.length ] ); }
-         * 
-         * 
-         * }
-         * 
-         * table.add(list);
-         * 
-         * }
-         */
-
-      
+         /* Show Table Vigenere */
+         for (int i = 0; i < table.size() - 1; i++) {
+            System.out.println(table.get(i));
+        }
 
         /* Input value */
 
@@ -74,34 +64,36 @@ public class VigenereDecoder {
             }
         }
 
-        /* vegenere decoding process  and show massage*/
-
+        /* vegenere decoding process and show massage */
 
         System.out.print("Show Decoding value : ");
 
-        for (int i = 0; i < key_array.size(); i++) {
+        ArrayList<ArrayList<Integer>> matchIndex = new ArrayList<>();
 
-                for (int j = 0; j < alphabet.length-1; j++) {
-                    
-                    if (key_array.get(i).equals(table.get(j).get(0))) {
+        for (int i = 0; i < plaintext_array.size(); i++) {
 
-                        for (int j2 = 0; j2 < table.get(j).size()-1 ;j2++) {
-                            
-                            if (plaintext_array.get(i).equals(table.get(j).get(j2))) {
-                                
-                                System.out.print(table.get(0).get(j2));
-                            }
+            ArrayList<Integer> list = new ArrayList<>();
 
-                        }
-                        
-                    }
+            for (int j = 0; j < alphabet.length; j++) {
 
+                if (plaintext_array.get(i).equals(alphabet[j])) {
+                    list.add(j);
                 }
+            }
+            for (int k = 0; k < alphabet.length; k++) {
+                if (key_array.get(i).equals(alphabet[k])) {
+                    list.add(k);
+                }
+            }
 
-
+            matchIndex.add(list);
         }
 
-     
+        /* show value encoding */
+        System.out.print("Show Decoding value : ");
+        for (int i = 0; i < plaintext_array.size(); i++) {
+            System.out.print(table.get(matchIndex.get(i).get(1)).get(matchIndex.get(i).get(0)));
+        } 
 
     }
 

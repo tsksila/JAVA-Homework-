@@ -75,23 +75,21 @@ public class VigenereEncoder {
                 if (plaintext_array.get(i).equals(alphabet[j])) {
                     list.add(j);
                 }
-
-                if (key_array.get(i).equals(alphabet[j])) {
-                    list.add(j);
+            }
+            for (int k = 0; k < alphabet.length; k++) {
+                if (key_array.get(i).equals(alphabet[k])) {
+                    list.add(k);
                 }
             }
+
             matchIndex.add(list);
         }
 
         /* show value encoding */
         System.out.print("Show encoding value : ");
         for (int i = 0; i < plaintext_array.size(); i++) {
-                System.out.print(table.get(matchIndex.get(i).get(0)).get(matchIndex.get(i).get(1)));
+            System.out.print(table.get(matchIndex.get(i).get(0)).get(matchIndex.get(i).get(1)));
         }
-
-
-
-       
 
     }
 
