@@ -60,7 +60,7 @@ public class VigenereFormulaEncoder {
             matchIndex.add(list);
         }
 
-        System.out.print("Output Encoding Text : ");
+        System.out.print("Result : ");
 
         for (int i = 0; i < matchIndex.size(); i++) {
             System.out.print(alphabet[(matchIndex.get(i).get(0) + matchIndex.get(i).get(1)) % alphabet.length]);

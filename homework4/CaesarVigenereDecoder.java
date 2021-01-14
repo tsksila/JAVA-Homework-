@@ -97,7 +97,7 @@ public class CaesarVigenereDecoder {
             }
         }
 
-        System.out.print("Caesar Output Encoding text  : ");
+        System.out.print("Result : ");
         for (int i = 0; i < plaintext_array_index.size(); i++) {
             System.out.print(alphabet[ Math.floorMod(plaintext_array_index.get(i) - shift, alphabet.length) ]);
         }

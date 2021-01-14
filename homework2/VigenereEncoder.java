@@ -86,7 +86,7 @@ public class VigenereEncoder {
         }
 
         /* show value encoding */
-        System.out.print("Show encoding value : ");
+        System.out.print("Result : ");
         for (int i = 0; i < plaintext_array.size(); i++) {
             System.out.print(table.get(matchIndex.get(i).get(0)).get(matchIndex.get(i).get(1)));
         }

@@ -56,7 +56,7 @@ public class CaesarEncoder {
 
         /* show output encoding */
 
-        System.out.print("Output text encoding : ");
+        System.out.print("Result : ");
         for (String index : plaintext_array_index) {
             System.out.print(alphabet[Integer.parseInt(index)]);
         }

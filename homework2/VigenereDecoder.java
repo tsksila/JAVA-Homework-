@@ -89,8 +89,8 @@ public class VigenereDecoder {
             matchIndex.add(list);
         }
 
-        /* show value encoding */
-        System.out.print("Show Decoding value : ");
+        /* show value Decoding */
+        System.out.print("Result : ");
         for (int i = 0; i < plaintext_array.size(); i++) {
             System.out.print(table.get(matchIndex.get(i).get(1)).get(matchIndex.get(i).get(0)));
         } 

@@ -39,7 +39,7 @@ public class VigenereFormulaDecoder {
 
         /* vegenere encoding by formula process */
 
-        /* match index plaintext and value form alphabet */
+        /* Match index plaintext and value form alphabet */
         ArrayList<ArrayList<Integer>> matchIndex = new ArrayList<>();
 
         for (int i = 0; i < plaintext_array.size(); i++) {
@@ -63,7 +63,7 @@ public class VigenereFormulaDecoder {
 
         /* Vigenere Formula */
 
-        System.out.print("Output Decoding Text : ");
+        System.out.print("Result : ");
 
         for (int i = 0; i < matchIndex.size(); i++) {
             System.out.print(alphabet[  Math.floorMod(matchIndex.get(i).get(0) - matchIndex.get(i).get(1) , alphabet.length)  ]);       

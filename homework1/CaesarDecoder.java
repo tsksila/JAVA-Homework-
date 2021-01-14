@@ -69,7 +69,7 @@ public class CaesarDecoder {
 
         /* show output decoding */
 
-        System.out.print("Output Message Decoding : ");
+        System.out.print("Result : ");
         for (String index : plaintext_array_index) {
             System.out.print(alphabet[Integer.parseInt(index)]);
         }
