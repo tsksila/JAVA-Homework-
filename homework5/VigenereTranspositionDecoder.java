@@ -31,6 +31,7 @@ public class VigenereTranspositionDecoder {
         System.out.println();
 
         /* Fill in Key for transposition */
+        /* Check input key value */
 
         ArrayList<Integer> Tran_key = new ArrayList<Integer>();
 
