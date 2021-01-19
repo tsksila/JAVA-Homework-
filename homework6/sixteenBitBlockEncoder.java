@@ -22,6 +22,7 @@ public class sixteenBitBlockEncoder {
         /* Add Padding */
         if (plaintext_array.size() % 2 != 0) {
             plaintext_array.add("X");
+            System.out.println("Add Padding Result : " +plaintext_array); 
         }
 
         /* Encode  by function */
