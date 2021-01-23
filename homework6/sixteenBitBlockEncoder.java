@@ -16,7 +16,7 @@ public class sixteenBitBlockEncoder {
         ArrayList<String> plaintext_array = new ArrayList<String>();
 
         for (int i = 0; i < plaintext.toCharArray().length; i++) {
-            plaintext_array.add(String.valueOf(plaintext.toUpperCase().toCharArray()[i]));
+            plaintext_array.add(String.valueOf(plaintext.toCharArray()[i]));
         }
 
         /* Add Padding */
