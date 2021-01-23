@@ -32,23 +32,20 @@ public class MiniDesEncoder {
                     + XOR(Transposition(
                             SBox(XOR(Transposition(Transposition(convToBinary(message_array[i]), 1), 2), Key1)), 4),
                             Transposition(convToBinary(message_array[i]), 1).substring(0, 4));
-               
-            message_listString +=  Transposition(
-                XOR(Transposition(SBox(XOR(Transposition(SW, 2), Key2)), 4), SW.substring(0, 4)) + ""
-                        + SW.substring(4, 8),
-                -1) ;
+
+            message_listString += Transposition(
+                    XOR(Transposition(SBox(XOR(Transposition(SW, 2), Key2)), 4), SW.substring(0, 4)) + ""
+                            + SW.substring(4, 8),
+                    -1);
 
         }
 
-       
-
-        
-        System.out.println("Result : " +  message_listString);
-        System.out.println("Result Text :" +" "+ BinaryToString(message_listString));
+        System.out.println("Result : " + message_listString);
+        System.out.println("Result Text :" + " " + BinaryToString(message_listString));
 
     }
 
-    /* ALL FUNCTION  */
+    /* ALL FUNCTION */
 
     static String convToBinary(char message) {
 
@@ -193,25 +190,22 @@ public class MiniDesEncoder {
         String S_val = ConvIntToBinary(S0table[index.get(0).get(0)][index.get(0).get(1)]) + ""
                 + ConvIntToBinary(S1table[index.get(1).get(0)][index.get(1).get(1)]);
 
-
         return S_val;
 
     }
 
-    static String BinaryToString  (String message) {
+    static String BinaryToString(String message) {
 
-        String s = message ;
+        String s = message;
         String str = "";
-    
-        for (int i = 0; i < s.length()/8; i++) {
-    
-            int a = Integer.parseInt(s.substring(8*i,(i+1)*8),2);
-            str += (char)(a);
-        }
-    
-      
 
-        return str ;
+        for (int i = 0; i < s.length() / 8; i++) {
+
+            int a = Integer.parseInt(s.substring(8 * i, (i + 1) * 8), 2);
+            str += (char) (a);
+        }
+
+        return str;
     }
 
 }
