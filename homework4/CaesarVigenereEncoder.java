@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,7 +15,7 @@ public class CaesarVigenereEncoder {
     public static void main(String[] args) {
         
         
-
+        String  FileDirectory = "C:\\Users\\silal\\Desktop\\CaesarVigenereEncode.txt" ;
         String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
         "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
@@ -17,8 +24,18 @@ public class CaesarVigenereEncoder {
 
         System.out.println(" ----------- Caesar Encoder by Formula ---------- ");
 
-        System.out.print("Input the plaintext message : ");
-        String plaintext = input.nextLine();
+       
+        Path path = Paths.get(FileDirectory);
+        String plaintext ;
+        if (Files.exists(path)) {
+            System.out.print("Input the Encoding message : ");
+            plaintext = ReadFile(FileDirectory);
+        }
+        else{
+            System.out.print("Input the Encoding message : ");
+             plaintext = input.next();
+        }
+
 
         System.out.print("Input number for shift : ");
         int shift = input.nextInt();
@@ -102,6 +119,29 @@ public class CaesarVigenereEncoder {
            }
 
 
+
+    }
+
+
+    static String ReadFile(String path) {
+        File file = new File(path);
+
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String message = "" ;
+            String line;
+            while ((line = br.readLine()) != null) {
+                message +=line ;
+                System.out.println(line);
+            }
+            br.close();
+            return message ;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "null" ;
 
     }
 

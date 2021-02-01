@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,7 +13,7 @@ public class VigenereTranspositionEncoder {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        String FileDirectory = "C:\\Users\\silal\\Desktop\\TranspositionEncode.txt";
         String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
                 "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
@@ -14,8 +21,18 @@ public class VigenereTranspositionEncoder {
 
         System.out.println("------------ Vigenere Encoder by Formula ------------ ");
 
-        System.out.print("Input the plaintext message : ");
-        String plaintext = input.nextLine();
+        String plaintext;
+
+        Path path = Paths.get(FileDirectory);
+
+        if (Files.exists(path)) {
+            System.out.print("Input the Encoding message : ");
+            plaintext = ReadFile(FileDirectory);
+        } else {
+            System.out.print("Input the Encoding message : ");
+            plaintext = input.nextLine();
+        }
+
         ArrayList<String> plaintext_array = new ArrayList<String>();
 
         for (int i = 0; i < plaintext.toCharArray().length; i++) {
@@ -66,7 +83,7 @@ public class VigenereTranspositionEncoder {
 
         ArrayList<String> Vigenereoutput = new ArrayList<String>();
 
-        /*  vigenere encode formula */
+        /* vigenere encode formula */
 
         for (int i = 0; i < matchIndex.size(); i++) {
             System.out.print(alphabet[(matchIndex.get(i).get(0) + matchIndex.get(i).get(1)) % alphabet.length]);
@@ -96,7 +113,6 @@ public class VigenereTranspositionEncoder {
 
             int key_num = input.nextInt();
 
-            
             if (key_num <= Vigenereoutput.size()) {
 
                 if (Tran_key.size() == 0) {
@@ -132,6 +148,28 @@ public class VigenereTranspositionEncoder {
             System.out.print(Vigenereoutput.get(Tran_key.get(i) - 1));
 
         }
+
+    }
+
+    static String ReadFile(String path) {
+        File file = new File(path);
+
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String message = "";
+            String line;
+            while ((line = br.readLine()) != null) {
+                message += line;
+                System.out.println(line);
+            }
+            br.close();
+            return message;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "null";
 
     }
 

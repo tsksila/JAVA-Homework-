@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,15 +39,25 @@ public class VigenereDecoder {
             table.add(list);
 
         }
-         /* Show Table Vigenere */
-         for (int i = 0; i < table.size() - 1; i++) {
+        /* Show Table Vigenere */
+        for (int i = 0; i < table.size() - 1; i++) {
             System.out.println(table.get(i));
         }
 
         /* Input value */
+        String plaintext;
 
-        System.out.print("Input the Encode message : ");
-        String plaintext = input.nextLine();
+        String FileDirectory = "C:\\Users\\silal\\Desktop\\VigenereEncode.txt";
+        Path path = Paths.get(FileDirectory);
+        /* Check file was exist */
+        if (Files.exists(path)) {
+            System.out.print("Input the Encoding message : ");
+            plaintext = ReadFile(FileDirectory);
+        } else {
+            System.out.print("Input the Encoding message : ");
+            plaintext = input.nextLine();
+        }
+
         ArrayList<String> plaintext_array = new ArrayList<String>();
 
         for (int i = 0; i < plaintext.toCharArray().length; i++) {
@@ -93,7 +110,29 @@ public class VigenereDecoder {
         System.out.print("Result : ");
         for (int i = 0; i < plaintext_array.size(); i++) {
             System.out.print(table.get(matchIndex.get(i).get(1)).get(matchIndex.get(i).get(0)));
-        } 
+        }
+
+    }
+
+    static String ReadFile(String path) {
+        File file = new File(path);
+
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String message = "";
+            String line;
+            while ((line = br.readLine()) != null) {
+                message += line;
+                System.out.println(line);
+            }
+            br.close();
+            return message;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "null";
 
     }
 

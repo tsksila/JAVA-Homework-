@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -5,7 +12,7 @@ public class MiniDesDecoder {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        String FileDirectory = "C:\\Users\\silal\\Desktop\\MiniDesEncode.txt";
         System.out.println("-------------------- MINI DES DECODER -------------------");
 
         /* Generation Key */
@@ -19,8 +26,16 @@ public class MiniDesDecoder {
         System.out.println("KEY 1 : " + Key1);
         System.out.println("KEY 2 : " + Key2);
 
-        System.out.print("Input your Message : ");
-        String message = input.next();
+        String message;
+        Path path = Paths.get(FileDirectory);
+
+        if (Files.exists(path)) {
+            System.out.print("Input the Encoding message : ");
+            message = ReadFile(FileDirectory);
+        } else {
+            System.out.print("Input the Encoding message : ");
+            message = input.next();
+        }
 
         ;
 
@@ -218,6 +233,28 @@ public class MiniDesDecoder {
         }
 
         return str;
+    }
+
+    static String ReadFile(String path) {
+        File file = new File(path);
+
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String message = "" ;
+            String line;
+            while ((line = br.readLine()) != null) {
+                message +=line ;
+                System.out.println(line);
+            }
+            br.close();
+            return message ;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "null" ;
+
     }
 
 }

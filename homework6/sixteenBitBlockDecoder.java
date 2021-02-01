@@ -1,4 +1,11 @@
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -7,11 +14,22 @@ public class sixteenBitBlockDecoder {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        String  FileDirectory = "C:\\Users\\silal\\Desktop\\16bitEncode.txt" ;
         System.out.println("-------------- 16 Bit-Block  Decoder--------------");
 
-        System.out.print("Input your Message : ");
-        String plaintext = input.next();
+        String plaintext ;
+        Path path = Paths.get(FileDirectory);
+      
+              if (Files.exists(path)) {
+                  System.out.print("Input the Encoding message : ");
+                  plaintext = ReadFile(FileDirectory);
+              }
+              else{
+                  System.out.print("Input the Encoding message : ");
+                   plaintext = input.next();
+              }
+
+
 
         ArrayList<String> plaintext_array = new ArrayList<String>();
 
@@ -173,5 +191,28 @@ public class sixteenBitBlockDecoder {
         
         return message ;
       } 
+
+      
+ static String ReadFile(String path) {
+    File file = new File(path);
+
+    try {
+
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String message = "" ;
+        String line;
+        while ((line = br.readLine()) != null) {
+            message +=line ;
+            System.out.println(line);
+        }
+        br.close();
+        return message ;
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    return "null" ;
+
+}
 
 }

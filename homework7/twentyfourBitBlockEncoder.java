@@ -1,4 +1,7 @@
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -6,6 +9,7 @@ public class twentyfourBitBlockEncoder {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
+        String  FileDirectory = "C:\\Users\\silal\\Desktop\\" ;  // file directory for create 
 
         System.out.println("-------------- 24 Bit-Block  Decoder--------------");
 
@@ -29,15 +33,20 @@ public class twentyfourBitBlockEncoder {
 
 
         System.out.print("Result : ");
+        String message = "" ;
         for (int i = 0; i < plaintext_array.size()/3 ; i++) {
 
             int index = i * 3 ;
 
             String encodeText = XOR(SubstitionBit(Transposition(Shift(convToBinary(plaintext_array.get(index).charAt(0))+convToBinary(plaintext_array.get(index+1).charAt(0))+convToBinary(plaintext_array.get(index+2).charAt(0)))))) ;
-
+            message += encodeText ;
             System.out.print( encodeText);
 
         }
+
+        CreateAndWriteFile(FileDirectory, message);
+
+
         
     }
 
@@ -156,6 +165,35 @@ public class twentyfourBitBlockEncoder {
         return output ;
     }
 
+    static void CreateAndWriteFile (String Path , String message) {
+
+        String filename = "24bitEncode.txt" ;
+	 System.out.println();
+         /* Create File */
+        try {
+            File myObj = new File(Path+filename);
+            if (myObj.createNewFile()) {
+              System.out.println("File created: " + myObj.getName());
+            } else {
+              System.out.println("File already exists.");
+            }
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
+
+          /* Write file */
+          try {
+            FileWriter myWriter = new FileWriter(Path+filename);
+            myWriter.write(message);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
+
+    }
 
     
 }

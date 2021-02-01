@@ -1,4 +1,7 @@
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class VigenereFormulaEncoder {
@@ -6,6 +9,8 @@ public class VigenereFormulaEncoder {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
+
+        String  FileDirectory = "C:\\Users\\silal\\Desktop\\" ;  // file directory for create 
 
         String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
                 "S", "T", "U", "V", "W", "X", "Y", "Z" };
@@ -61,11 +66,46 @@ public class VigenereFormulaEncoder {
         }
 
         System.out.print("Result : ");
+        String message = "";
 
         for (int i = 0; i < matchIndex.size(); i++) {
+            message +=alphabet[(matchIndex.get(i).get(0) + matchIndex.get(i).get(1)) % alphabet.length] ;
             System.out.print(alphabet[(matchIndex.get(i).get(0) + matchIndex.get(i).get(1)) % alphabet.length]);
 
         }
+
+        CreateAndWriteFile(FileDirectory, message);
+
+    }
+
+
+    static void CreateAndWriteFile (String Path , String message) {
+
+        String filename = "VigenereFormulaEncode.txt" ;
+	 System.out.println();
+         /* Create File */
+        try {
+            File myObj = new File(Path+filename);
+            if (myObj.createNewFile()) {
+              System.out.println("File created: " + myObj.getName());
+            } else {
+              System.out.println("File already exists.");
+            }
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
+
+          /* Write file */
+          try {
+            FileWriter myWriter = new FileWriter(Path+filename);
+            myWriter.write(message);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
 
     }
 

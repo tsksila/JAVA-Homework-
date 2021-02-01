@@ -1,7 +1,13 @@
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class CaesarDecoder {
 
@@ -9,8 +15,7 @@ public class CaesarDecoder {
 
     public static void main(String[] args) {
 
-     
-
+        String FileDirectory = "C:\\Users\\silal\\Desktop\\CaesarEncode.txt";
         String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
                 "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
@@ -39,8 +44,16 @@ public class CaesarDecoder {
 
         /* Input encoding message */
 
-        System.out.print("Input the Encoding message : ");
-        String plaintext = input.next();
+        String plaintext;
+        Path path = Paths.get(FileDirectory);
+        /* Check file was exist */
+        if (Files.exists(path)) {
+            System.out.print("Input the Encoding message : ");
+            plaintext = ReadFile(FileDirectory);
+        } else {
+            System.out.print("Input the Encoding message : ");
+            plaintext = input.next();
+        }
 
         char[] plaintext_array = plaintext.toUpperCase().toCharArray();
         ArrayList<String> plaintext_array_index = new ArrayList<String>();
@@ -76,4 +89,24 @@ public class CaesarDecoder {
 
     }
 
+    static String ReadFile(String path) {
+        File file = new File(path);
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String message = "";
+            String line;
+            while ((line = br.readLine()) != null) {
+                message += line;
+                System.out.println(line);
+            }
+            br.close();
+            return message;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "null";
+
+    }
 }

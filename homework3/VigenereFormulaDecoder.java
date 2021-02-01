@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,14 +13,23 @@ public class VigenereFormulaDecoder {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        String FileDirectory = "C:\\Users\\silal\\Desktop\\VigenereFormulaEncode.txt";
         String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
                 "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
         System.out.println("Vigenere Decoder by Formula ");
 
-        System.out.print("Input the Encode message : ");
-        String plaintext = input.nextLine();
+        String plaintext;
+        Path path = Paths.get(FileDirectory);
+        /* Check file was exist */
+        if (Files.exists(path)) {
+            System.out.print("Input the Encoding message : ");
+            plaintext = ReadFile(FileDirectory);
+        } else {
+            System.out.print("Input the Encoding message : ");
+            plaintext = input.nextLine();
+        }
+
         ArrayList<String> plaintext_array = new ArrayList<String>();
 
         for (int i = 0; i < plaintext.toCharArray().length; i++) {
@@ -66,8 +82,31 @@ public class VigenereFormulaDecoder {
         System.out.print("Result : ");
 
         for (int i = 0; i < matchIndex.size(); i++) {
-            System.out.print(alphabet[  Math.floorMod(matchIndex.get(i).get(0) - matchIndex.get(i).get(1) , alphabet.length)  ]);       
+            System.out.print(
+                    alphabet[Math.floorMod(matchIndex.get(i).get(0) - matchIndex.get(i).get(1), alphabet.length)]);
         }
+
+    }
+
+    static String ReadFile(String path) {
+        File file = new File(path);
+
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String message = "";
+            String line;
+            while ((line = br.readLine()) != null) {
+                message += line;
+                System.out.println(line);
+            }
+            br.close();
+            return message;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "null";
 
     }
 

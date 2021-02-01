@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,6 +10,7 @@ public class VigenereEncoder {
 
     public static void main(String[] args) {
 
+        String FileDirectory = "C:\\Users\\silal\\Desktop\\"; // file directory for create
         String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
                 "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
@@ -86,9 +90,45 @@ public class VigenereEncoder {
         }
 
         /* show value encoding */
+        String EncodeMessage = "";
+
         System.out.print("Result : ");
         for (int i = 0; i < plaintext_array.size(); i++) {
+
+            EncodeMessage += table.get(matchIndex.get(i).get(0)).get(matchIndex.get(i).get(1));
             System.out.print(table.get(matchIndex.get(i).get(0)).get(matchIndex.get(i).get(1)));
+        }
+
+        CreateAndWriteFile(FileDirectory, EncodeMessage);
+
+    }
+
+    static void CreateAndWriteFile(String Path, String message) {
+
+        String filename = "VigenereEncode.txt";
+        System.out.println();
+        /* Create File */
+        try {
+            File myObj = new File(Path + filename);
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        /* Write file */
+        try {
+            FileWriter myWriter = new FileWriter(Path + filename);
+            myWriter.write(message);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
 
     }

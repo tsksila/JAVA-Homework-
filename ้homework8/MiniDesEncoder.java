@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -5,7 +8,7 @@ public class MiniDesEncoder {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        String  FileDirectory = "C:\\Users\\silal\\Desktop\\" ;  // file directory for create 
         System.out.println("-------------------- MINI DES ENCODER -------------------");
 
         /* Generation Key */
@@ -39,7 +42,7 @@ public class MiniDesEncoder {
                     -1);
 
         }
-
+        CreateAndWriteFile(FileDirectory, message_listString);
         System.out.println("Result : " + message_listString);
         System.out.println("Result Text :" + " " + BinaryToString(message_listString));
 
@@ -207,5 +210,37 @@ public class MiniDesEncoder {
 
         return str;
     }
+
+
+    static void CreateAndWriteFile (String Path , String message) {
+
+        String filename = "MiniDesEncode.txt" ;
+	 System.out.println();
+         /* Create File */
+        try {
+            File myObj = new File(Path+filename);
+            if (myObj.createNewFile()) {
+              System.out.println("File created: " + myObj.getName());
+            } else {
+              System.out.println("File already exists.");
+            }
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
+
+          /* Write file */
+          try {
+            FileWriter myWriter = new FileWriter(Path+filename);
+            myWriter.write(message);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
+
+    }
+
 
 }
