@@ -248,7 +248,12 @@ public class MiniDesDecoder {
                 System.out.println(line);
             }
             br.close();
-            return message ;
+            String bitmessage = "";
+            for (int i = 0; i < message.toCharArray().length; i++) {
+                    bitmessage += convToBinary(message.toCharArray()[i]);
+            }
+    
+            return bitmessage ;
         } catch (IOException e) {
             e.printStackTrace();
         }

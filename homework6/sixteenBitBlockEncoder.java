@@ -43,7 +43,7 @@ public class sixteenBitBlockEncoder {
             message += encodeText ;
         }
 
-        CreateAndWriteFile(FileDirectory, message);
+        CreateAndWriteFile( FileDirectory, BinaryToString(message));
 
     }
 

@@ -44,7 +44,7 @@ public class twentyfourBitBlockEncoder {
 
         }
 
-        CreateAndWriteFile(FileDirectory, message);
+        CreateAndWriteFile(FileDirectory, BinaryToString(message));
 
 
         
@@ -147,23 +147,21 @@ public class twentyfourBitBlockEncoder {
         return Text;
     }
 
-    static String BinaryToChar  (String message) {
+  
+    static String BinaryToString(String message) {
 
-        String [] input = {message.substring(0,8) , message.substring(8,16)};// Binary input as String
-        StringBuilder sb = new StringBuilder(); //  store the chars
+        String s = message;
+        String str = "";
 
-        for (int i = 0; i < input.length; i++) {
-            
-            Arrays.stream( // Create a Stream
-            input[i].split("(?<=\\G.{8})") // Splits the input string into 8-char-sections 
-            ).forEach(s -> // Go through each 8-char-section...
-                sb.append((char) Integer.parseInt(s, 2)) // ...and turn it into an int and then to a char
-            );
+        for (int i = 0; i < s.length() / 8; i++) {
 
-        }   
-        String output =  sb.toString(); 
-        return output ;
+            int a = Integer.parseInt(s.substring(8 * i, (i + 1) * 8), 2);
+            str += (char) (a);
+        }
+
+        return str;
     }
+
 
     static void CreateAndWriteFile (String Path , String message) {
 

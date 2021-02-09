@@ -33,7 +33,7 @@ public class sixteenBitBlockDecoder {
 
         ArrayList<String> plaintext_array = new ArrayList<String>();
 
-        for (int i = 0; i < plaintext.toCharArray().length/16; i++) {
+       for (int i = 0; i < plaintext.toCharArray().length/16; i++) {
 
             String Text = "" ;
             for (int j = i*16; j < (i*16)+16; j++) {
@@ -43,6 +43,7 @@ public class sixteenBitBlockDecoder {
             plaintext_array.add(Text) ;
 
         }
+      
       
 
         /* Decode  by function */
@@ -202,11 +203,17 @@ public class sixteenBitBlockDecoder {
         String message = "" ;
         String line;
         while ((line = br.readLine()) != null) {
-            message +=line ;
+            message += line;
             System.out.println(line);
         }
         br.close();
-        return message ;
+        
+        String bitmessage = "";
+        for (int i = 0; i < message.toCharArray().length; i++) {
+                bitmessage += convToBinary(message.toCharArray()[i]);
+        }
+
+        return bitmessage ;
     } catch (IOException e) {
         e.printStackTrace();
     }
