@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class twentyfourBitBlockEncoder {
     private static Scanner input = new Scanner(System.in);
