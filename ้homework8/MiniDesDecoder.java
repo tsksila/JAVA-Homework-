@@ -18,10 +18,10 @@ public class MiniDesDecoder {
         /* Generation Key */
 
         System.out.print("Input 10 bit Key : ");
-        int Key = input.nextInt();
+        String Key = input.next();
 
-        String Key1 = Transposition(Shift(Transposition(String.valueOf(Key), 10), 1), 8);
-        String Key2 = Transposition(Shift(Shift(Transposition(String.valueOf(Key), 10), 1), 2), 8);
+        String Key1 = Transposition(Shift(Transposition(Key, 10), 1), 8);
+        String Key2 = Transposition(Shift(Shift(Transposition(Key, 10), 1), 2), 8);
 
         System.out.println("KEY 1 : " + Key1);
         System.out.println("KEY 2 : " + Key2);
