@@ -12,7 +12,7 @@ public class MiniDesDecoder {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String FileDirectory = "C:\\Users\\silal\\Desktop\\MiniDesEncode.txt";
+        String FileDirectory = "C:\\Users\\sila2\\Desktop\\MiniDesEncode.txt";
         System.out.println("-------------------- MINI DES DECODER -------------------");
 
         /* Generation Key */

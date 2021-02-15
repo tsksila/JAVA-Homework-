@@ -14,7 +14,7 @@ public class sixteenBitBlockDecoder {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String  FileDirectory = "C:\\Users\\silal\\Desktop\\16bitEncode.txt" ;
+        String  FileDirectory = "C:\\Users\\sila2\\Desktop\\16bitEncode.txt" ;
         System.out.println("-------------- 16 Bit-Block  Decoder--------------");
 
         String plaintext ;

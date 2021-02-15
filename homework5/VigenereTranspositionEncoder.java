@@ -13,7 +13,7 @@ public class VigenereTranspositionEncoder {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String FileDirectory = "C:\\Users\\silal\\Desktop\\TranspositionEncode.txt";
+        String FileDirectory = "C:\\Users\\sila2\\Desktop\\TranspositionEncode.txt";
         String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
                 "S", "T", "U", "V", "W", "X", "Y", "Z" };
 

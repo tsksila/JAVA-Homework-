@@ -47,7 +47,7 @@ public class VigenereDecoder {
         /* Input value */
         String plaintext;
 
-        String FileDirectory = "C:\\Users\\silal\\Desktop\\VigenereEncode.txt";
+        String FileDirectory = "C:\\Users\\sila2\\Desktop\\VigenereEncode.txt";
         Path path = Paths.get(FileDirectory);
         /* Check file was exist */
         if (Files.exists(path)) {

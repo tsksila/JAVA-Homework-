@@ -15,7 +15,7 @@ public class CaesarDecoder {
 
     public static void main(String[] args) {
 
-        String FileDirectory = "C:\\Users\\silal\\Desktop\\CaesarEncode.txt";
+        String FileDirectory = "C:\\Users\\sila2\\Desktop\\CaesarEncode.txt";
         String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
                 "S", "T", "U", "V", "W", "X", "Y", "Z" };
 

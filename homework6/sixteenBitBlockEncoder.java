@@ -9,7 +9,7 @@ public class sixteenBitBlockEncoder {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String  FileDirectory = "C:\\Users\\silal\\Desktop\\" ;  // file directory for create 
+        String  FileDirectory = "C:\\Users\\sila2\\Desktop\\" ;  // file directory for create 
         System.out.println("-------------- 16 Bit-Block  Encoder--------------");
 
         System.out.print("Input your Message : ");
