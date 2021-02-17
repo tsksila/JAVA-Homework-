@@ -9,7 +9,7 @@ public class twentyfourBitBlockEncoder {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String  FileDirectory = "C:\\Users\\sila2\\Desktop\\" ;  // file directory for create 
+        String  FileDirectory = "C:\\Users\\silal\\Desktop\\" ;  // file directory for create 
 
         System.out.println("-------------- 24 Bit-Block  Decoder--------------");
 
@@ -38,7 +38,7 @@ public class twentyfourBitBlockEncoder {
 
             int index = i * 3 ;
 
-            String encodeText = XOR(SubstitionBit(Transposition(Shift(convToBinary(plaintext_array.get(index).charAt(0))+convToBinary(plaintext_array.get(index+1).charAt(0))+convToBinary(plaintext_array.get(index+2).charAt(0)))))) ;
+            String encodeText = Transposition(SubstitionBit(Shift(XOR(convToBinary(plaintext_array.get(index).charAt(0))+convToBinary(plaintext_array.get(index+1).charAt(0))+convToBinary(plaintext_array.get(index+2).charAt(0)))))) ;
             message += encodeText ;
             System.out.print( encodeText);
 
@@ -60,7 +60,6 @@ public class twentyfourBitBlockEncoder {
     static String Shift(String message) {
 
         int key = 5; // KEY FOR SHIFT
-
         char[] shitfMessage = message.toCharArray();
 
         for (int i = 0; i < key; i++) {
@@ -95,12 +94,16 @@ public class twentyfourBitBlockEncoder {
 
         String[] str_val = { message.substring(0, 12), message.substring(12, 24) };
         String[] col = { "0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011","1100", "1101", "1110", "1111" };
-        String[] row = { "00", "01", "10", "11" };
+        String[] row = { "000", "001", "010", "100","101","110","111" };
         String[][] table = {
             {"0010", "1100", "0100", "0001", "0111", "1010", "1011", "0110", "1000", "0101", "0011", "1111", "1101", "0000", "1110", "1001"},
             {"1110", "1011", "0010", "1100", "0100", "0111", "1101", "0001", "0101", "0000", "1111", "1010", "0011", "1001", "1000", "0110"},
             {"0100", "0010", "0001", "1011", "1010", "1101", "0111", "1000", "1111", "1001", "1100", "0101", "0110", "0011", "0000", "1110"},
-            {"1011", "1000", "1100", "0111", "0001", "1110", "0010", "1101", "0110", "1111", "0000", "1001", "1010", "0100", "0101", "0011"},};
+            {"1011", "1000", "1100", "0111", "0001", "1110", "0010", "1101", "0110", "1111", "0000", "1001", "1010", "0100", "0101", "0011"},
+            {"1010", "1101", "0111", "1000", "0100", "0010", "0001", "1011", "1111", "1001", "1100", "0101", "0110", "0011", "0000", "1110"},
+            {"1111", "0100", "0010", "0001", "1011", "1001", "0111", "1000", "0110", "0011", "0000", "1110", "1100", "0101", "1010", "1101"},
+            {"1000", "1111", "1001", "1100", "0101", "0110", "0011", "0000", "1110", "0100", "0010", "0001", "1011", "1010", "1101", "0111"}
+            };
             // KEY SubstitionBit
 
         ArrayList<ArrayList<Integer>> index = new ArrayList<>();
@@ -110,7 +113,7 @@ public class twentyfourBitBlockEncoder {
             ArrayList<Integer> match = new ArrayList<>();
 
             for (int j = 0; j < row.length; j++) {
-                if (str_val[i].substring(0, 2).equals(row[j])) {
+                if (str_val[i].substring(0, 3).equals(row[j])) {
                     match.add(j);
                 }
             }

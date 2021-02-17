@@ -14,7 +14,7 @@ public class twentyfourBitBlockDecoder {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String  FileDirectory = "C:\\Users\\sila2\\Desktop\\24bitEncode.txt" ; 
+        String  FileDirectory = "C:\\Users\\silal\\Desktop\\24bitEncode.txt" ; 
         System.out.println("-------------- 24 Bit-Block  Decoder--------------");
 
 
@@ -51,7 +51,7 @@ public class twentyfourBitBlockDecoder {
 
          for (int i = 0; i < plaintext_array.size() ; i++) {        
  
-             output +=  BinaryToChar(Shift(Transposition(SubstitionBit(XOR(plaintext_array.get(i)))))) ;
+             output +=  BinaryToString(XOR(Shift(SubstitionBit(Transposition(plaintext_array.get(i)))))) ;
          }
  
          String result = DeletePadding(output) ;
@@ -109,12 +109,16 @@ public class twentyfourBitBlockDecoder {
 
         String[] str_val = { message.substring(0, 12), message.substring(12, 24) };
         String[] col = { "0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011","1100", "1101", "1110", "1111" };
-        String[] row = { "00", "01", "10", "11" };
+        String[] row = { "000", "001", "010", "100","101","110","111" };
         String[][] table = {
             {"0010", "1100", "0100", "0001", "0111", "1010", "1011", "0110", "1000", "0101", "0011", "1111", "1101", "0000", "1110", "1001"},
             {"1110", "1011", "0010", "1100", "0100", "0111", "1101", "0001", "0101", "0000", "1111", "1010", "0011", "1001", "1000", "0110"},
             {"0100", "0010", "0001", "1011", "1010", "1101", "0111", "1000", "1111", "1001", "1100", "0101", "0110", "0011", "0000", "1110"},
-            {"1011", "1000", "1100", "0111", "0001", "1110", "0010", "1101", "0110", "1111", "0000", "1001", "1010", "0100", "0101", "0011"},};
+            {"1011", "1000", "1100", "0111", "0001", "1110", "0010", "1101", "0110", "1111", "0000", "1001", "1010", "0100", "0101", "0011"},
+            {"1010", "1101", "0111", "1000", "0100", "0010", "0001", "1011", "1111", "1001", "1100", "0101", "0110", "0011", "0000", "1110"},
+            {"1111", "0100", "0010", "0001", "1011", "1001", "0111", "1000", "0110", "0011", "0000", "1110", "1100", "0101", "1010", "1101"},
+            {"1000", "1111", "1001", "1100", "0101", "0110", "0011", "0000", "1110", "0100", "0010", "0001", "1011", "1010", "1101", "0111"}
+            };
             // KEY SubstitionBit
 
         ArrayList<Integer> index = new ArrayList<>();
@@ -124,7 +128,7 @@ public class twentyfourBitBlockDecoder {
             int match  = 0 ;
 
             for (int j = 0; j < row.length; j++) {
-                if (str_val[i].substring(0, 2).equals(row[j])) {
+                if (str_val[i].substring(0, 3).equals(row[j])) {
                     match = j;
                 }
             }
@@ -161,22 +165,18 @@ public class twentyfourBitBlockDecoder {
         return Text;
     }
 
-    static String BinaryToChar  (String message) {
+    static String BinaryToString (String message) {
 
-        String [] input = {message.substring(0,8) , message.substring(8,16) , message.substring(16,24) };// Binary input as String
-        StringBuilder sb = new StringBuilder(); //  store the chars
+        String s = message;
+        String str = "";
 
-        for (int i = 0; i < input.length; i++) {
-            
-            Arrays.stream( // Create a Stream
-            input[i].split("(?<=\\G.{8})") // Splits the input string into 8-char-sections 
-            ).forEach(s -> // Go through each 8-char-section...
-                sb.append((char) Integer.parseInt(s, 2)) // ...and turn it into an int and then to a char
-            );
+        for (int i = 0; i < s.length() / 8; i++) {
 
-        }   
-        String output =  sb.toString(); 
-        return output ;
+            int a = Integer.parseInt(s.substring(8 * i, (i + 1) * 8), 2);
+            str += (char) (a);
+        }
+
+        return str;
     }
 
     static String DeletePadding (String message) {
@@ -215,6 +215,8 @@ public class twentyfourBitBlockDecoder {
         for (int i = 0; i < message.toCharArray().length; i++) {
                 bitmessage += convToBinary(message.toCharArray()[i]);
         }
+
+        System.out.println("Bit message :"+bitmessage);
 
         return bitmessage ;
     } catch (IOException e) {

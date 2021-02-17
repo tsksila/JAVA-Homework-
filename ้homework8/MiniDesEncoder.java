@@ -8,7 +8,7 @@ public class MiniDesEncoder {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String  FileDirectory = "C:\\Users\\sila2\\Desktop\\" ;  // file directory for create 
+        String  FileDirectory = "C:\\Users\\silal\\Desktop\\" ;  // file directory for create 
         System.out.println("-------------------- MINI DES ENCODER -------------------");
 
         /* Generation Key */
