@@ -42,6 +42,7 @@ public class MiniDesEncoder {
                     -1);
 
         }
+        
         CreateAndWriteFile(FileDirectory, BinaryToString(message_listString));
         System.out.println("Result : " + message_listString);
         System.out.println("Result Text :" + " " + BinaryToString(message_listString));
